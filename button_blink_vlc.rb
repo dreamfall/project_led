@@ -17,7 +17,7 @@ class ButtonBlinkVlc
       next unless vlc.connected?
 
       if RPi::GPIO.low? BUTTON_PIN
-        unless vlc.playing?
+        unless vlc.client.playing?
           if first_time
             vlc.play("/home/pi/Movies/rick.avi")
           else
