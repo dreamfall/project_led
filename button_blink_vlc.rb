@@ -35,7 +35,7 @@ class ButtonBlinkVlc
 
       else
         puts "button up"
-        if vlc.client.playing?
+        unless vlc.client.stopped?
           puts "vlc pause"
 
           vlc.client.pause
