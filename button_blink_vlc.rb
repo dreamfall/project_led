@@ -17,11 +17,16 @@ class ButtonBlinkVlc
       sleep 0.2
 
       if RPi::GPIO.low? BUTTON_PIN
+        puts "button down"
         unless vlc.client.playing?
           if first_time
+            puts "First time play"
+
             vlc.play("/home/pi/Movies/rick.avi")
             first_time = false
           else
+
+            puts "resume"
             vlc.play
           end
         end
@@ -29,7 +34,10 @@ class ButtonBlinkVlc
         RPi::GPIO.set_high LED_PIN
 
       else
+        puts "button up"
         if vlc.client.playing?
+          puts "vlc pause"
+
           vlc.client.pause
         end
 
@@ -37,6 +45,7 @@ class ButtonBlinkVlc
       end
     end
   ensure
+    puts "vlc stop"
     vlc.server.stop
     RPi::GPIO.clean_up
   end
