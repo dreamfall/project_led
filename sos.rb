@@ -9,6 +9,10 @@ class LEDBlinker
     setup
 
     100.times do |i|
+      blink(:short)
+      blink(:short)
+      blink(:short)
+
       blink(:long)
       blink(:long)
       blink(:long)
@@ -17,9 +21,7 @@ class LEDBlinker
       blink(:short)
       blink(:short)
 
-      blink(:long)
-      blink(:long)
-      blink(:long)
+      sleep 0.8
     end
   ensure
     RPi::GPIO.clean_up
