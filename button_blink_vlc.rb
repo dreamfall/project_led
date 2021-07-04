@@ -20,6 +20,7 @@ class ButtonBlinkVlc
         unless vlc.client.playing?
           if first_time
             vlc.play("/home/pi/Movies/rick.avi")
+            first_time = false
           else
             vlc.play
           end
