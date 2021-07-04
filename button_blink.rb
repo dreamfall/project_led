@@ -11,7 +11,7 @@ class ButtonBlink
     setup
 
     while true do
-      if RPi::GPIO.high? BUTTON_PIN
+      if RPi::GPIO.low? BUTTON_PIN
         RPi::GPIO.set_high LED_PIN
       else
         RPi::GPIO.set_low LED_PIN
