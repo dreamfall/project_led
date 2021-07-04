@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'rpi_gpio'
-
+require 'vlc-client'
 
 class ButtonBlinkVlc
   LED_PIN = 11
@@ -31,6 +31,7 @@ class ButtonBlinkVlc
       end
     end
   ensure
+    vlc.server.stop
     RPi::GPIO.clean_up
   end
 
