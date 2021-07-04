@@ -1,5 +1,3 @@
-#!/usr/bin/ruby
-
 require 'rubygems'
 require 'bundler/setup'
 require 'rpi_gpio'
