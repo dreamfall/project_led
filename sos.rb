@@ -4,13 +4,12 @@ require 'rubygems'
 require 'bundler/setup'
 require 'rpi_gpio'
 
-RPi::GPIO
-
-
 class LEDBlinker
   LED_PIN = 11
 
   def run
+    setup
+
     100.times do |i|
       blink(:long)
       blink(:long)
