@@ -14,7 +14,7 @@ class ButtonBlinkVlc
     first_time = true
 
     while true do
-      next unless vlc.connected?
+      sleep 0.2
 
       if RPi::GPIO.low? BUTTON_PIN
         unless vlc.client.playing?
