@@ -49,7 +49,7 @@ class RgbLEDBlinker
     end
   end
 
-  def blink(color)
+  def pin_from_color(color)
     case color
     when :red
       R_PIN
