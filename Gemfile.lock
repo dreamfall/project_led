@@ -1,0 +1,15 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    epoll (0.3.0)
+    rpi_gpio (0.5.0)
+      epoll (~> 0.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  rpi_gpio
+
+BUNDLED WITH
+   1.17.3
