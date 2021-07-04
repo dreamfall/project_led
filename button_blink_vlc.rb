@@ -18,7 +18,7 @@ class ButtonBlinkVlc
 
       if RPi::GPIO.low? BUTTON_PIN
         puts "button down"
-        unless vlc.client.playing?
+        if vlc_status != "playing"
           if first_time
             puts "First time play"
 
@@ -36,7 +36,7 @@ class ButtonBlinkVlc
       else
         puts "button up"
 
-        if vlc.client.status[:state] != "paused"
+        if vlc_status != "paused"
           puts "vlc pause"
 
           vlc.client.pause
@@ -52,6 +52,14 @@ class ButtonBlinkVlc
   end
 
   private
+
+  def vlc_status
+    if vlc.client.playing?
+      vlc.client.status[:state]
+    else
+      "stopped"
+    end
+  end
 
   def setup
     @vlc = VLC::System.new
