@@ -14,7 +14,7 @@ class ButtonBlinkVlc
     first_time = true
 
     while true do
-      sleep 1
+      sleep 0.05
 
       if RPi::GPIO.low? BUTTON_PIN
         puts "button down"
