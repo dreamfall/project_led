@@ -38,7 +38,7 @@ class ButtonBlinkVlc
   private
 
   def setup
-    vlc = VLC::System.new
+    @vlc = VLC::System.new
     RPi::GPIO.set_numbering :board
     RPi::GPIO.setup LED_PIN, as: :output, initialize: :low
     RPi::GPIO.setup BUTTON_PIN, as: :input, pull: :up
