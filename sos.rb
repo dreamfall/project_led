@@ -46,7 +46,7 @@ class LEDBlinker
 
   def setup
     RPi::GPIO.set_numbering :board
-    RPi::GPIO.setup LED_PIN, as: :input, initialize: :low
+    RPi::GPIO.setup LED_PIN, as: :output, initialize: :low
   end
 end
 
