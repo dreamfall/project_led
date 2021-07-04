@@ -30,7 +30,7 @@ class ButtonBlinkVlc
 
       else
         if vlc.client.playing?
-          vlc.pause
+          vlc.client.pause
         end
 
         RPi::GPIO.set_low LED_PIN
