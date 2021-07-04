@@ -14,7 +14,7 @@ class ButtonBlinkVlc
     first_time = true
 
     while true do
-      sleep 0.2
+      sleep 1
 
       if RPi::GPIO.low? BUTTON_PIN
         puts "button down"
@@ -35,7 +35,8 @@ class ButtonBlinkVlc
 
       else
         puts "button up"
-        unless vlc.client.stopped?
+
+        if vlc.client.status[:state] != "paused"
           puts "vlc pause"
 
           vlc.client.pause
