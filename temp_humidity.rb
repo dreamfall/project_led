@@ -150,7 +150,7 @@ class TempHumidity
   end
 
   def run
-    dht = DHT.new
+    dht = DHT.new(DHTPin)
 
     while true
       dht.read_dht11
