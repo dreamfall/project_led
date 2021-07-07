@@ -52,6 +52,7 @@ class TempHumidity
 				  break
         end
 			  if dht_timeout?(t)
+          puts "to 1"
 				  return DHTLIB_ERROR_TIMEOUT
         end
       end
@@ -61,6 +62,7 @@ class TempHumidity
 
  		  while RPi::GPIO.low?(pin)
 			  if dht_timeout?(t)
+          puts "to 2"
 				  return DHTLIB_ERROR_TIMEOUT
         end
       end
@@ -70,6 +72,7 @@ class TempHumidity
 
  		  while RPi::GPIO.high?(pin)
 			  if dht_timeout?(t)
+          puts "to 3"
 				  return DHTLIB_ERROR_TIMEOUT
         end
       end
