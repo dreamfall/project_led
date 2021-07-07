@@ -150,7 +150,6 @@ class TempHumidity
   end
 
   def run
-    setup
     dht = DHT.new
 
     while true
@@ -163,14 +162,6 @@ class TempHumidity
     end
   ensure
     RPi::GPIO.clean_up
-  end
-
-
-  def setup
-    RPi::GPIO.set_numbering :board
-    RPi::GPIO.setup R_PIN, as: :output, initialize: :low
-    RPi::GPIO.setup G_PIN, as: :output, initialize: :low
-    RPi::GPIO.setup B_PIN, as: :output, initialize: :low
   end
 
   private
