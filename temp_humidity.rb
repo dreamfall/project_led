@@ -148,6 +148,12 @@ class TempHumidity
 
 		  return result
     end
+
+    private
+
+    def dht_timeout?(t)
+      (Time.now - t) > DHTLIB_TIMEOUT
+    end
   end
 
   def run
@@ -163,12 +169,6 @@ class TempHumidity
     end
   ensure
     RPi::GPIO.clean_up
-  end
-
-  private
-
-  def dht_timeout?(t)
-    (Time.now - t) > DHTLIB_TIMEOUT
   end
 end
 
