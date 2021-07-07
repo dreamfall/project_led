@@ -79,7 +79,7 @@ class TempHumidity
 
 			  while RPi::GPIO.low?(pin)
 				  if dht_timeout?(t)
-					  #print ("Data Low %d"%(i))
+					  print "Data Low"
 					  return DHTLIB_ERROR_TIMEOUT
           end
         end
@@ -88,14 +88,16 @@ class TempHumidity
 
 			  while RPi::GPIO.high?(pin)
 				  if dht_timeout?(t)
-					  #print ("Data HIGH %d"%(i))
+					  print "Data HIGH"
 					  return DHTLIB_ERROR_TIMEOUT
           end
         end
 
 			  if (Time.now - t) > 0.00005
-				  self.bits[idx] |= mask
+				  self.bits[idx] = bits[idx] | mask
         end
+
+        puts bits.to_yaml
 
 			  mask >>= 1
 
