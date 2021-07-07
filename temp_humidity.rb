@@ -147,6 +147,7 @@ class TempHumidity
 
 		  return result
     end
+  end
 
   def run
     setup
