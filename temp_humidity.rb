@@ -12,7 +12,7 @@ class TempHumidity
 	  DHTLIB_INVALID_VALUE  = -999
 
 	  DHTLIB_DHT11_WAKEUP   = 0.020  #20ms
-	  DHTLIB_TIMEOUT        = 0.01 #100us
+	  DHTLIB_TIMEOUT        = 0.1 #100us
 
     attr_reader :humidity, :temperature, :pin
     attr_accessor :pin, :bits
