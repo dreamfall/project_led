@@ -45,7 +45,7 @@ class TempHumidity
       RPi::GPIO.setup pin, as: :input
 
 		  # Waiting echo
-		  t = Time.current
+		  t = Time.now
 
 		  while true
 			  if RPi::GPIO.low?(pin)
@@ -57,7 +57,7 @@ class TempHumidity
       end
 
 		  # Waiting echo low level end
-		  t = Time.current
+		  t = Time.now
 
  		  while RPi::GPIO.low?(pin)
 			  if dht_timeout?(t)
@@ -66,7 +66,7 @@ class TempHumidity
       end
 
 		  # Waiting echo high level end
-		  t = Time.current
+		  t = Time.now
 
  		  while RPi::GPIO.high?(pin)
 			  if dht_timeout?(t)
@@ -75,7 +75,7 @@ class TempHumidity
       end
 
 		  40.times do
-		    t = Time.current
+		    t = Time.now
 
 			  while RPi::GPIO.low?(pin)
 				  if dht_timeout?(t)
@@ -84,7 +84,7 @@ class TempHumidity
           end
         end
 
-			  t = Time.current
+			  t = Time.now
 
 			  while RPi::GPIO.high?(pin)
 				  if dht_timeout?(t)
@@ -93,7 +93,7 @@ class TempHumidity
           end
         end
 
-			  if (Time.current - t) > 0.00005
+			  if (Time.now - t) > 0.00005
 				  self.bits[idx] |= mask
         end
 
@@ -168,7 +168,7 @@ class TempHumidity
   private
 
   def dht_timeout?(t)
-    (Time.current - t) > DHTLIB_TIMEOUT
+    (Time.now - t) > DHTLIB_TIMEOUT
   end
 end
 
