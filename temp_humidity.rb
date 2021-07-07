@@ -79,7 +79,7 @@ class TempHumidity
 
 			  while RPi::GPIO.low?(pin)
 				  if dht_timeout?(t)
-					  print "Data Low"
+					  puts "Data Low"
 					  return DHTLIB_ERROR_TIMEOUT
           end
         end
@@ -88,7 +88,7 @@ class TempHumidity
 
 			  while RPi::GPIO.high?(pin)
 				  if dht_timeout?(t)
-					  print "Data HIGH"
+					  puts "Data HIGH"
 					  return DHTLIB_ERROR_TIMEOUT
           end
         end
