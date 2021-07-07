@@ -73,7 +73,7 @@ class TempHumidity
         end
       end
 
-		  for i in range(0,40,1)
+		  40.times do
 		    t = Time.current
 
 			  while RPi::GPIO.low?(pin)
@@ -135,7 +135,7 @@ class TempHumidity
 	  def read_dht11
 		  result = DHTLIB_INVALID_VALUE
 
-		  for i in range(0,15)
+		  15.times do
 			  result = read_dht11_once
 
 			  if result == DHTLIB_OK
