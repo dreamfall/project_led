@@ -162,8 +162,8 @@ class TempHumidity
     while true
       dht.read_dht11
 
-      puts "Temperature: #{temperature}"
-      puts "Humidity #{humidity}"
+      puts "Temperature: #{dht.temperature}"
+      puts "Humidity #{dht.humidity}"
 
       sleep 60
     end
