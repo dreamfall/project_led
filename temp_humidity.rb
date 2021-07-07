@@ -26,7 +26,7 @@ class TempHumidity
     end
 
 
-	  def read_sensor(wakeup_delay)
+	  def read_sensor
 		  mask = 0x80
 		  idx = 0
 		  self.bits = [0,0,0,0,0]
@@ -39,6 +39,7 @@ class TempHumidity
 		  # start signal
       RPi::GPIO.set_low pin
 		  sleep(DHTLIB_DHT11_WAKEUP)
+
 		  RPi::GPIO.set_high pin
 		  # time.sleep(0.000001)
       RPi::GPIO.setup pin, as: :input
