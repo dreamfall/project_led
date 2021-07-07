@@ -26,7 +26,7 @@ class TempHumidity
     end
 
 
-	  def readSensor(wakeup_delay)
+	  def read_sensor(wakeup_delay)
 		  mask = 0x80
 		  idx = 0
 		  self.bits = [0,0,0,0,0]
@@ -113,8 +113,8 @@ class TempHumidity
     end
 
 	  #Read DHT sensor, analyze the data of temperature and humidity
-	  def readDHT11Once
-		  rv = readSensor
+	  def read_dht11_once
+		  rv = read_sensor
 		  if rv != DHTLIB_OK
 			  @humidity = DHTLIB_INVALID_VALUE
 			  @temperature = DHTLIB_INVALID_VALUE
@@ -130,27 +130,30 @@ class TempHumidity
       end
 
 		  return DHTLIB_OK
-
-	def readDHT11
-		result = DHTLIB_INVALID_VALUE
-
-		for i in range(0,15)
-			result = readDHT11Once
-			if result == DHTLIB_OK
-				return DHTLIB_OK
-      end
-
-			sleep(0.1)
     end
 
-		return result
-  end
+	  def read_dht11
+		  result = DHTLIB_INVALID_VALUE
+
+		  for i in range(0,15)
+			  result = read_dht11_once
+
+			  if result == DHTLIB_OK
+				  return DHTLIB_OK
+        end
+
+			  sleep 0.1
+      end
+
+		  return result
+    end
 
   def run
     setup
+    dht = DHT.new
 
     while true
-      readDHT11
+      dht.read_dht11
 
       puts "Temperature: #{temperature}"
       puts "Humidity #{humidity}"
