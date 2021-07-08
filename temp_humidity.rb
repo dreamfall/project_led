@@ -48,11 +48,9 @@ class TempHumidity
 		  t = Time.now
 
 		  while true
-        puts dht_timeout?(t)
 			  if RPi::GPIO.low?(pin)
 				  break
         end
-        puts dht_timeout?(t)
 			  if dht_timeout?(t)
           puts "to 1"
 				  return DHTLIB_ERROR_TIMEOUT
@@ -105,8 +103,6 @@ class TempHumidity
 				  self.bits[idx] = bits[idx] | mask
         end
 
-        puts bits
-
 			  mask >>= 1
 
 			  if mask == 0
@@ -118,14 +114,16 @@ class TempHumidity
 
 		  # time.sleep(0.000001)
 
-      RPi::GPIO.setup pin, as: :output, initialize: :high
+      RPi::GPIO.setup pin, as: :output
+		  RPi::GPIO.set_high pin
 
-      return DHTLIB_OK
+      DHTLIB_OK
     end
 
 	  #Read DHT sensor, analyze the data of temperature and humidity
 	  def read_dht11_once
 		  rv = read_sensor
+      puts rv
 		  if rv != DHTLIB_OK
 			  @humidity = DHTLIB_INVALID_VALUE
 			  @temperature = DHTLIB_INVALID_VALUE
