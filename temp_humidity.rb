@@ -97,6 +97,9 @@ class TempHumidity
 					  return DHTLIB_ERROR_TIMEOUT
           end
         end
+        puts 'i'
+        puts (Time.now - t) > 0.00005
+        puts 'i'
 
 			  if (Time.now - t) > 0.00005
 				  self.bits[idx] = bits[idx] | mask
