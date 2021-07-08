@@ -25,22 +25,22 @@ class TempHumidity
 		  RPi::GPIO.set_numbering :board
     end
 
-
 	  def read_sensor
 		  mask = 0x80
 		  idx = 0
 		  self.bits = [0,0,0,0,0]
 
 		  # Clear sda
-      RPi::GPIO.setup pin, as: :output, initialize: :high
+      RPi::GPIO.setup pin, as: :output
+		  RPi::GPIO.set_high pin
 
 		  sleep 0.5
 
 		  # start signal
       RPi::GPIO.set_low pin
 		  sleep(DHTLIB_DHT11_WAKEUP)
-
 		  RPi::GPIO.set_high pin
+
 		  # time.sleep(0.000001)
       RPi::GPIO.setup pin, as: :input
 
@@ -48,9 +48,11 @@ class TempHumidity
 		  t = Time.now
 
 		  while true
+        puts dht_timeout?(t)
 			  if RPi::GPIO.low?(pin)
 				  break
         end
+        puts dht_timeout?(t)
 			  if dht_timeout?(t)
           puts "to 1"
 				  return DHTLIB_ERROR_TIMEOUT
