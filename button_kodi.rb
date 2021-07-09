@@ -19,14 +19,18 @@ class ButtonKodi
 
       if RPi::GPIO.low? BUTTON_PIN
         # is codi runing?
-        if !starting && `ps -aux | grep kodi`.split("\n").count == 2
+        puts `ps -aux | grep kodi`.split("\n").count
+        if !starting && `ps -aux | grep kodi`.split("\n").count <= 3
+          puts 'btn dwn'
           pid = spawn "kodi-standalone"
           Process.detach(pid)
           starting = true
         else
           if starting
+            puts 'strt'
             if wait_while_it_launches_sec > i * step
               starting = false
+              i = 0
             end
 
             i += 1
