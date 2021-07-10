@@ -34,6 +34,9 @@ class ButtonKodi
             end
 
             i += 1
+          else
+            `echo "on 0" | cec-client RPI -s -d 0`
+            `echo "as" | cec-client RPI -s -d 1`
           end
         end
       end
